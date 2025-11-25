@@ -1,0 +1,7 @@
+{
+  "name": "cvd-inspect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
