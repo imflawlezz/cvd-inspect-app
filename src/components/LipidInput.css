@@ -1,0 +1,31 @@
+.lipid-input-container {
+  margin-bottom: 8px;
+}
+
+.lipid-input-label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.required-asterisk {
+  color: var(--ion-color-danger);
+}
+
+.lipid-input-field {
+  --placeholder-color: var(--ion-text-color);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.lipid-input-helper {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.lipid-input-error {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+}

@@ -1,0 +1,30 @@
+.unit-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+}
+
+.unit-label {
+  font-weight: 600;
+  font-size: 16px;
+  min-width: 70px;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.unit-label[color="primary"] {
+  color: var(--ion-color-primary) !important;
+}
+
+@media (min-width: 768px) {
+  .unit-toggle-container {
+    padding: 20px;
+  }
+
+  .unit-label {
+    font-size: 18px;
+    min-width: 80px;
+  }
+}

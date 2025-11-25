@@ -1,0 +1,24 @@
+.gender-selector-container {
+  margin-bottom: 8px;
+}
+
+.gender-selector-item {
+}
+
+.gender-selector-label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.required-asterisk {
+  color: var(--ion-color-danger);
+}
+
+.gender-selector-error {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
