@@ -1,6 +1,7 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "short_name": "CVD Inspect",
+  "name": "CVD Inspect - Ocena ryzyka sercowo-naczyniowego",
+  "description": "Aplikacja do oceny ryzyka chorób sercowo-naczyniowych na podstawie lipidogramu",
   "icons": [
     { "src": "/favicon.ico", "type": "image/x-icon", "sizes": "16x16 32x32" },
     { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
@@ -8,8 +9,11 @@
     { "src": "/icon-192-maskable.png", "type": "image/png", "sizes": "192x192", "purpose": "maskable" },
     { "src": "/icon-512-maskable.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "orientation": "portrait",
+  "theme_color": "#3880ff",
+  "background_color": "#ffffff",
+  "categories": ["medical", "health"]
 }
