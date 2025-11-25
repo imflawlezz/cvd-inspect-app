@@ -62,7 +62,7 @@ const NormsReportPage: React.FC = () => {
           <IonTitle>Raport norm</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent>
         <div className="report-container">
           <div className="report-header">
             <h1 className="page-title">Wyniki lipidogramu</h1>

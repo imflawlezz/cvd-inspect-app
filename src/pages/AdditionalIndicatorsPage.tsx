@@ -58,7 +58,7 @@ const AdditionalIndicatorsPage: React.FC = () => {
           <IonTitle>Dodatkowe wskaźniki</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent>
         <div className="indicators-container">
           <div className="indicators-header">
             <h1 className="page-title">Dodatkowe wskaźniki</h1>

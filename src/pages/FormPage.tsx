@@ -118,7 +118,7 @@ const FormPage: React.FC = () => {
           <IonTitle>CVD Inspect</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent>
         <div className="form-page-container">
           <div className="form-header">
             <h1 className="page-title">Ocena ryzyka CVD</h1>
