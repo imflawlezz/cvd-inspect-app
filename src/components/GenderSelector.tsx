@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonItem, IonLabel, IonSelect, IonSelectOption, IonNote } from '@ionic/react';
-import { Gender } from '../context/AppContext';
+import { Gender } from '../types';
 import './GenderSelector.css';
 
 interface GenderSelectorProps {

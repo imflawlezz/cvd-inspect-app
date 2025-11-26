@@ -9,8 +9,6 @@ import {
   IonButtons,
   IonBackButton,
   IonCard,
-  IonCardHeader,
-  IonCardTitle,
   IonCardContent,
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
@@ -27,13 +25,17 @@ import './NormsReportPage.css';
 
 const NormsReportPage: React.FC = () => {
   const history = useHistory();
-  const { state } = useApp();
+  const { submittedData } = useApp();
 
-  const dataInMgdl = getLipidDataInMgdl(state.lipidData, state.unit);
+  if (!submittedData) {
+    return null;
+  }
+
+  const dataInMgdl = getLipidDataInMgdl(submittedData.lipidData, submittedData.unit);
 
   const totalResult = checkTotalCholesterol(dataInMgdl.total!);
   const ldlResult = checkLDL(dataInMgdl.ldl!);
-  const hdlResult = checkHDL(dataInMgdl.hdl!, state.gender!);
+  const hdlResult = checkHDL(dataInMgdl.hdl!, submittedData.gender);
   const triglyceridesResult = checkTriglycerides(dataInMgdl.triglycerides!);
 
   const getStatus = (
@@ -97,14 +99,14 @@ const NormsReportPage: React.FC = () => {
 
               <ProgressBar
                 value={hdlResult.value}
-                maxValue={state.gender === 'female' ? 55 : 50}
+                maxValue={submittedData.gender === 'female' ? 55 : 50}
                 status={getStatus(hdlResult)}
                 label="HDL"
                 unit="mg/dl"
                 reverse={true}
               />
               <div className="norm-info">
-                Norma: &gt; {state.gender === 'female' ? '45' : '40'} mg/dl
+                Norma: &gt; {submittedData.gender === 'female' ? '45' : '40'} mg/dl
               </div>
 
               <ProgressBar

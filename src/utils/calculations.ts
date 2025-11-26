@@ -1,4 +1,4 @@
-import { Gender, LipidData } from '../context/AppContext';
+import { Gender, LipidData, Unit } from '../types';
 import {
   mmolToMgdlCholesterol,
   mmolToMgdlTriglycerides,
@@ -6,7 +6,7 @@ import {
 
 export const getLipidDataInMgdl = (
   data: LipidData,
-  unit: 'mgdl' | 'mmol'
+  unit: Unit
 ): LipidData => {
   if (unit === 'mgdl') {
     return data;

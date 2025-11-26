@@ -1,30 +1,14 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import {
+  Gender,
+  Unit,
+  LipidData,
+  FormState,
+  SubmittedData,
+  AppState,
+} from '../types';
 
-export type Gender = 'female' | 'male';
-export type Unit = 'mgdl' | 'mmol';
-
-export interface LipidData {
-  total: number | null;
-  ldl: number | null;
-  hdl: number | null;
-  triglycerides: number | null;
-}
-
-export interface AppState {
-  gender: Gender | null;
-  unit: Unit;
-  lipidData: LipidData;
-}
-
-interface AppContextType {
-  state: AppState;
-  setGender: (gender: Gender) => void;
-  setUnit: (unit: Unit) => void;
-  setLipidData: (data: Partial<LipidData>) => void;
-  resetData: () => void;
-}
-
-const initialState: AppState = {
+const initialFormState: FormState = {
   gender: null,
   unit: 'mgdl',
   lipidData: {
@@ -35,24 +19,90 @@ const initialState: AppState = {
   },
 };
 
+const initialState: AppState = {
+  formState: initialFormState,
+  submittedData: null,
+};
+
+interface AppContextType {
+  state: AppState;
+  formState: FormState;
+  submittedData: SubmittedData | null;
+  setGender: (gender: Gender) => void;
+  setUnit: (unit: Unit) => void;
+  setLipidData: (data: Partial<LipidData>) => void;
+  submitForm: () => void;
+  resetData: () => void;
+}
+
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, setState] = useState<AppState>(initialState);
 
   const setGender = (gender: Gender) => {
-    setState((prev) => ({ ...prev, gender }));
+    setState((prev) => ({
+      ...prev,
+      formState: { ...prev.formState, gender },
+    }));
   };
 
   const setUnit = (unit: Unit) => {
-    setState((prev) => ({ ...prev, unit }));
+    setState((prev) => ({
+      ...prev,
+      formState: { ...prev.formState, unit },
+    }));
   };
 
   const setLipidData = (data: Partial<LipidData>) => {
     setState((prev) => ({
       ...prev,
-      lipidData: { ...prev.lipidData, ...data },
+      formState: {
+        ...prev.formState,
+        lipidData: { ...prev.formState.lipidData, ...data },
+      },
     }));
+  };
+
+  const submitForm = () => {
+    setState((prev) => {
+      const { formState } = prev;
+      if (!formState.gender) {
+        return prev;
+      }
+
+      // Validate that all required fields are filled
+      const { total, ldl, hdl, triglycerides } = formState.lipidData;
+      if (
+        total === null ||
+        total <= 0 ||
+        ldl === null ||
+        ldl <= 0 ||
+        hdl === null ||
+        hdl <= 0 ||
+        triglycerides === null ||
+        triglycerides <= 0
+      ) {
+        return prev;
+      }
+
+      // Create submitted data snapshot
+      const submittedData: SubmittedData = {
+        gender: formState.gender,
+        unit: formState.unit,
+        lipidData: {
+          total,
+          ldl,
+          hdl,
+          triglycerides,
+        },
+      };
+
+      return {
+        ...prev,
+        submittedData,
+      };
+    });
   };
 
   const resetData = () => {
@@ -63,9 +113,12 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     <AppContext.Provider
       value={{
         state,
+        formState: state.formState,
+        submittedData: state.submittedData,
         setGender,
         setUnit,
         setLipidData,
+        submitForm,
         resetData,
       }}
     >
@@ -74,6 +127,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useApp = () => {
   const context = useContext(AppContext);
   if (!context) {
@@ -81,5 +135,6 @@ export const useApp = () => {
   }
   return context;
 };
+
 
 

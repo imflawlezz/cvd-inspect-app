@@ -1,4 +1,4 @@
-import { LipidData, Gender } from '../context/AppContext';
+import { LipidData, Gender } from '../types';
 
 export interface ValidationError {
   field: keyof LipidData | 'gender';

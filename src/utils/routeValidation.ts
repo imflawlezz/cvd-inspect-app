@@ -1,11 +1,11 @@
-import { AppState } from '../context/AppContext';
+import { SubmittedData } from '../types';
 
-export const isFormDataComplete = (state: AppState): boolean => {
-  if (!state.gender) {
+export const isFormDataComplete = (submittedData: SubmittedData | null): boolean => {
+  if (!submittedData) {
     return false;
   }
 
-  const { total, ldl, hdl, triglycerides } = state.lipidData;
+  const { total, ldl, hdl, triglycerides } = submittedData.lipidData;
   
   return (
     total !== null &&

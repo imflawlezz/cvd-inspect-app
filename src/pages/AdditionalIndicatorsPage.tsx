@@ -25,9 +25,13 @@ import './AdditionalIndicatorsPage.css';
 
 const AdditionalIndicatorsPage: React.FC = () => {
   const history = useHistory();
-  const { state } = useApp();
+  const { submittedData } = useApp();
 
-  const dataInMgdl = getLipidDataInMgdl(state.lipidData, state.unit);
+  if (!submittedData) {
+    return null;
+  }
+
+  const dataInMgdl = getLipidDataInMgdl(submittedData.lipidData, submittedData.unit);
 
   const tgHdlRatio = calculateTgHdlRatio(
     dataInMgdl.triglycerides!,
