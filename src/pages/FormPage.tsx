@@ -99,7 +99,6 @@ const FormPage: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    // Prevent multiple simultaneous submissions
     if (isSubmitting) {
       return;
     }
@@ -114,14 +113,11 @@ const FormPage: React.FC = () => {
       return;
     }
 
-    // Submit form data (this creates a snapshot in submittedData)
     submitForm();
 
-    // Only navigate if we're currently on the form page
     if (location.pathname === '/') {
       setIsSubmitting(true);
       history.push('/norms-report');
-      // Reset submitting state after navigation completes
       setTimeout(() => setIsSubmitting(false), 100);
     }
   };
