@@ -1,3 +1,5 @@
+> **Archived.** This project is no longer maintained and is kept for reference only.
+
 # CVD Inspect
 
 CVD Inspect is an application for assessing cardiovascular disease (CVD) risk based on lipid profile results.
